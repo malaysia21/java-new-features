@@ -1,9 +1,15 @@
 package com.aga.feature.service.java14;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class Java14Example {
+
+    private static final Logger logger = LoggerFactory.getLogger(Java14Example.class);
+
     public static void main(String[] args) {
 
         //standard
@@ -25,7 +31,7 @@ public class Java14Example {
                 \s \sTesting new textBlock escape characters. \
                 Still in preview mode""";
 
-        System.out.println(multiline);
+        logger.debug("Text block: " + multiline);
     }
 
     private static void switchExpression() {
@@ -41,24 +47,25 @@ public class Java14Example {
             }
         };
 
-        System.out.println(result);
+        logger.debug("Switch expression: " + (result));
     }
 
     private static void instanceOf() {
         Object obj = "Java12";
         if (obj instanceof String s) {
             int length = s.length();
-            System.out.println(length);
+            logger.debug("Pattern matching for instance of: " + length);
         }
     }
 
     private static void record() {
         Student student = new Student(10, "Kate");
-        System.out.println(student.id());
-        System.out.println(student.name());
-        System.out.println(student);
+        logger.debug("Record studentId: " + student.id());
+        logger.debug("Record studentName: " + student.name());
+        logger.debug("Record student: " + student);
     }
 
 
-record Student(int id, String name) { };
+    record Student(int id, String name) {
+    }
 }

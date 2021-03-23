@@ -1,5 +1,8 @@
 package com.aga.feature.service.java12;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,6 +15,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Java12Example {
+
+    private static final Logger logger = LoggerFactory.getLogger(Java12Example.class);
 
     public static void main(String[] args) throws IOException {
 
@@ -37,9 +42,9 @@ public class Java12Example {
         String value2 = "                   Testing".indent(-10);
         String value3 = "Testing".indent(-10);
 
-        System.out.println(value);
-        System.out.println(value2);
-        System.out.println(value3);
+        logger.debug("String intend method: " + value);
+        logger.debug("String intend method: " + value2);
+        logger.debug("String intend method: " + value3);
     }
 
     private static void stringTransformMethod() {
@@ -48,16 +53,16 @@ public class Java12Example {
                 new StringBuilder(s).reverse().toString()
         );
 
-        System.out.println(transformedValue);
+        logger.debug("String transform method: " + transformedValue);
     }
 
     private static void fileMismatchMethod() throws IOException {
-        Path path1 = Paths.get("C:\\projects\\java-new-features\\service.module\\test_12_1.txt");
-        Path path2 = Paths.get("C:\\projects\\java-new-features\\service.module\\test_12_2.txt");
+        Path path1 = Paths.get("C:/projects/java-new-features/service.module/src/main/resources/test_12_1.txt");
+        Path path2 = Paths.get("C:/projects/java-new-features/service.module/src/main/resources/test_12_2.txt");
 
         long diff = Files.mismatch(path1, path2);
 
-        System.out.println(diff);
+        logger.debug("Files mismatch method: " + diff);
     }
 
     private static void collectorsTeeingMethod() {
@@ -67,15 +72,15 @@ public class Java12Example {
                         Collectors.counting(),
                         (sum, count) -> sum / count));
 
-        System.out.println(result);
+        logger.debug("Collectors teeing method: " + result);
     }
 
     private static void compactNumberFormatting() {
         NumberFormat formatterCompactNumber = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
         NumberFormat formatterCurrency = NumberFormat.getCurrencyInstance(Locale.US);
 
-        System.out.println(formatterCompactNumber.format(25000L));
-        System.out.println(formatterCurrency.format(25000L));
+        logger.debug("Compact Number Formatting: " + formatterCompactNumber.format(25000L));
+        logger.debug("Currency Formatting: " + formatterCurrency.format(25000L));
     }
 
     private static void switchExpression() {
@@ -85,14 +90,14 @@ public class Java12Example {
             case SATURDAY, SUNDAY -> "Day Off";
         };
 
-        System.out.println(typeOfDay);
+        logger.debug("Switch expression: " + typeOfDay);
     }
 
     private static void instanceOf() {
         Object obj = "Java12";
         if (obj instanceof String s) {
             int length = s.length();
-            System.out.println(length);
+            logger.debug("Pattern matching: " + length);
         }
     }
 

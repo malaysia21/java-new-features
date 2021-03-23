@@ -1,11 +1,16 @@
 package com.aga.feature.service.java13;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Java13Example {
 
+    private static final Logger logger = LoggerFactory.getLogger(Java13Example.class);
+
     public static void main(String[] args) {
-        //Preview
+        //preview
         switchExpression();
-        //Preview
+        //preview
         textBlock();
     }
 
@@ -22,7 +27,7 @@ public class Java13Example {
             default -> value;
         };
 
-        System.out.println(resultByTwo);
+        logger.debug("Switch expression: " + resultByTwo);
     }
 
     private static void textBlock() {
@@ -49,8 +54,8 @@ public class Java13Example {
                  }
                 """;
 
-        System.out.println(jsonString);
-        System.out.println(jsonTextBlock);
+        logger.debug("String: " + jsonString);
+        logger.debug("Text block: " + jsonTextBlock);
     }
 
 
